@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --clay: #C8501A;
+  --clay-dark: #8B3410;
+  --clay-light: #E8724A;
+  --lime: #B8D400;
+  --off-white: #F5F0E8;
+  --dark: #1A1208;
+  --mid: #3D2E1A;
+  --muted: #7A6A55;
+  --nav-h: 64px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off-white);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--dark);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 100;
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--off-white);
+  letter-spacing: 0.05em;
+}
+.logo span { color: var(--clay-light); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+  color: #9A8C7A; text-decoration: none; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--off-white); }
+.nav-cta {
+  background: var(--clay); color: var(--off-white) !important;
+  padding: 8px 18px; border-radius: 4px;
+  font-size: 0.78rem !important; font-weight: 500 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--clay-light) !important; color: var(--off-white) !important; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  padding-top: var(--nav-h);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.hero-text {
+  padding: 4rem 2rem 4rem 3rem;
+  position: relative; z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--clay-light);
+  margin-bottom: 1.25rem;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  color: var(--off-white);
+  margin-bottom: 1.5rem;
+}
+.hero-title em {
+  color: var(--clay-light); font-style: normal;
+  display: block;
+}
+.hero-sub {
+  font-size: 1rem; line-height: 1.7;
+  color: #9A8C7A;
+  max-width: 380px;
+  margin-bottom: 2.5rem;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--clay); color: var(--off-white);
+  padding: 14px 28px; border-radius: 4px;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+  border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  text-transform: uppercase;
+}
+.btn-primary:hover { background: var(--clay-light); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--off-white);
+  padding: 14px 28px; border-radius: 4px;
+  font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+  border: 1px solid rgba(245,240,232,0.2); cursor: pointer;
+  transition: border-color 0.2s, transform 0.1s;
+  text-transform: uppercase;
+}
+.btn-ghost:hover { border-color: rgba(245,240,232,0.5); transform: translateY(-1px); }
+
+/* COURT ILLUSTRATION */
+.hero-court {
+  position: relative; height: 100%;
+  min-height: 500px;
+  display: flex; align-items: center; justify-content: center;
+}
+.court-wrap {
+  position: relative;
+  width: 320px; height: 420px;
+}
+.court-svg { width: 100%; height: 100%; }
+
+/* STATS BAR */
+.stats-bar {
+  background: var(--clay);
+  padding: 1.25rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem; color: var(--off-white);
+  letter-spacing: 0.05em;
+}
+.stat-label {
+  font-size: 0.72rem; color: rgba(245,240,232,0.65);
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* SERVICES */
+.services {
+  padding: 5rem 3rem;
+  background: var(--off-white);
+}
+.section-label {
+  font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--clay);
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem; line-height: 1;
+  color: var(--dark);
+  margin-bottom: 3rem;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5px;
+  background: rgba(26,18,8,0.12);
+  border: 1.5px solid rgba(26,18,8,0.12);
+}
+.service-card {
+  background: var(--off-white);
+  padding: 2.5rem 2rem;
+  transition: background 0.25s;
+  cursor: default;
+}
+.service-card:hover { background: var(--dark); }
+.service-card:hover .s-title { color: var(--off-white); }
+.service-card:hover .s-desc { color: #9A8C7A; }
+.service-card:hover .s-num { color: var(--clay-light); }
+.s-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem; line-height: 1;
+  color: rgba(26,18,8,0.1);
+  margin-bottom: 0.5rem;
+  transition: color 0.25s;
+}
+.s-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: 0.03em;
+  color: var(--dark); margin-bottom: 0.75rem;
+  transition: color 0.25s;
+}
+.s-desc {
+  font-size: 0.85rem; line-height: 1.7;
+  color: var(--muted);
+  transition: color 0.25s;
+}
+
+/* RANKING PREVIEW */
+.ranking-section {
+  padding: 5rem 3rem;
+  background: var(--dark);
+}
+.ranking-section .section-title { color: var(--off-white); }
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+.ranking-table thead tr {
+  border-bottom: 1px solid rgba(245,240,232,0.1);
+}
+.ranking-table th {
+  font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--muted);
+  text-align: left; padding: 0 1rem 1rem;
+  font-weight: 400;
+}
+.ranking-table tbody tr {
+  border-bottom: 1px solid rgba(245,240,232,0.06);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.ranking-table tbody tr:hover { background: rgba(245,240,232,0.04); }
+.ranking-table td {
+  padding: 1rem;
+  font-size: 0.9rem; color: var(--off-white);
+}
+.pos-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; color: var(--muted);
+}
+.pos-num.top { color: var(--clay-light); }
+.player-name { font-weight: 500; }
+.player-club { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.pts {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; color: var(--lime);
+  letter-spacing: 0.05em;
+}
+.badge {
+  font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em;
+  padding: 3px 8px; border-radius: 3px; text-transform: uppercase;
+}
+.badge-a { background: rgba(200,80,26,0.2); color: var(--clay-light); }
+.badge-b { background: rgba(245,240,232,0.08); color: #9A8C7A; }
+
+/* TORNEOS */
+.torneos-section {
+  padding: 5rem 3rem;
+  background: var(--off-white);
+}
+.torneos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.torneo-card {
+  border: 1.5px solid rgba(26,18,8,0.12);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.torneo-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,18,8,0.1); }
+.torneo-header {
+  background: var(--dark);
+  padding: 1.25rem 1.25rem 1rem;
+}
+.torneo-fecha {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--clay-light); margin-bottom: 6px;
+}
+.torneo-nombre {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem; color: var(--off-white);
+  line-height: 1.1;
+}
+.torneo-body { padding: 1rem 1.25rem; }
+.torneo-info {
+  font-size: 0.8rem; color: var(--muted);
+  display: flex; flex-direction: column; gap: 4px;
+  margin-bottom: 1rem;
+}
+.torneo-info span::before { margin-right: 6px; }
+.torneo-btn {
+  width: 100%;
+  background: transparent; border: 1px solid rgba(26,18,8,0.2);
+  padding: 10px; border-radius: 4px;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--clay); cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.torneo-btn:hover { background: var(--clay); color: var(--off-white); border-color: var(--clay); }
+
+/* CTA FINAL */
+.cta-section {
+  padding: 6rem 3rem;
+  background: var(--clay);
+  text-align: center;
+}
+.cta-section .section-title {
+  color: var(--off-white); font-size: 3.5rem;
+}
+.cta-sub {
+  font-size: 1rem; color: rgba(245,240,232,0.7);
+  max-width: 400px; margin: 0 auto 2.5rem; line-height: 1.7;
+}
+.btn-white {
+  background: var(--off-white); color: var(--clay-dark);
+  padding: 16px 36px; border-radius: 4px;
+  font-size: 0.9rem; font-weight: 500; letter-spacing: 0.06em;
+  border: none; cursor: pointer; text-transform: uppercase;
+  transition: transform 0.15s;
+}
+.btn-white:hover { transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; color: var(--off-white); letter-spacing: 0.05em;
+}
+.footer-logo span { color: var(--clay-light); }
+.footer-copy { font-size: 0.75rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Tenis<span>AR</span></div>
+  <div class="nav-links">
+    <a href="#">Ranking</a>
+    <a href="#">Torneos</a>
+    <a href="#">Canchas</a>
+    <a href="#">Comunidad</a>
+    <a href="#" class="nav-cta">Registrarse</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Plataforma de tenis amateur · AMBA</p>
+    <h1 class="hero-title">
+      El tenis<br>amateur que
+      <em>vos querés</em>
+    </h1>
+    <p class="hero-sub">Ranking oficial, torneos organizados y comunidad activa para jugadores amateurs de Buenos Aires.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="alert('¡Próximamente!')">Sumate gratis</button>
+      <button class="btn-ghost" onclick="alert('Ver torneos')">Ver torneos →</button>
+    </div>
+  </div>
+  <div class="hero-court">
+    <div class="court-wrap">
+      <svg class="court-svg" viewBox="0 0 320 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Court surface -->
+        <rect x="20" y="20" width="280" height="380" rx="4" fill="#C8501A" opacity="0.15"/>
+        <rect x="20" y="20" width="280" height="380" rx="4" stroke="#C8501A" stroke-width="2.5" fill="#B84515" opacity="0.6"/>
+        <!-- Singles lines -->
+        <rect x="50" y="20" width="220" height="380" fill="none" stroke="#F5F0E8" stroke-width="1.5" opacity="0.5"/>
+        <!-- Service line top -->
+        <line x1="50" y1="150" x2="270" y2="150" stroke="#F5F0E8" stroke-width="1.5" opacity="0.5"/>
+        <!-- Service line bottom -->
+        <line x1="50" y1="270" x2="270" y2="270" stroke="#F5F0E8" stroke-width="1.5" opacity="0.5"/>
+        <!-- Center service line -->
+        <line x1="160" y1="150" x2="160" y2="270" stroke="#F5F0E8" stroke-width="1.5" opacity="0.5"/>
+        <!-- Baseline center marks -->
+        <line x1="160" y1="20" x2="160" y2="30" stroke="#F5F0E8" stroke-width="2" opacity="0.5"/>
+        <line x1="160" y1="390" x2="160" y2="400" stroke="#F5F0E8" stroke-width="2" opacity="0.5"/>
+        <!-- Net -->
+        <rect x="20" y="203" width="280" height="14" fill="#1A1208" opacity="0.3" rx="2"/>
+        <line x1="20" y1="210" x2="300" y2="210" stroke="#F5F0E8" stroke-width="2.5" opacity="0.9"/>
+        <line x1="155" y1="204" x2="165" y2="216" stroke="#F5F0E8" stroke-width="3" opacity="0.6"/>
+        <!-- Net posts -->
+        <rect x="12" y="198" width="8" height="24" rx="2" fill="#F5F0E8" opacity="0.7"/>
+        <rect x="300" y="198" width="8" height="24" rx="2" fill="#F5F0E8" opacity="0.7"/>
+        <!-- Ball -->
+        <circle cx="215" cy="155" r="10" fill="#B8D400"/>
+        <path d="M207 155 Q215 148 223 155" stroke="#1A1208" stroke-width="1" fill="none" opacity="0.4"/>
+        <path d="M207 155 Q215 162 223 155" stroke="#1A1208" stroke-width="1" fill="none" opacity="0.4"/>
+        <!-- Player silhouette (simple) -->
+        <ellipse cx="130" cy="320" rx="14" ry="18" fill="#C8501A" opacity="0.5"/>
+        <circle cx="130" cy="296" r="9" fill="#C8501A" opacity="0.5"/>
+        <!-- Racket -->
+        <ellipse cx="150" cy="310" rx="12" ry="16" stroke="#F5F0E8" stroke-width="2" fill="none" opacity="0.6"/>
+        <line x1="148" y1="326" x2="144" y2="342" stroke="#F5F0E8" stroke-width="2.5" opacity="0.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">2.400+</div>
+    <div class="stat-label">Jugadores</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">38</div>
+    <div class="stat-label">Clubes adheridos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">120+</div>
+    <div class="stat-label">Torneos jugados</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">AMBA</div>
+    <div class="stat-label">Cobertura</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <p class="section-label">Servicios</p>
+  <h2 class="section-title">TODO LO QUE<br>NECESITÁS</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="s-num">01</div>
+      <div class="s-title">RANKING OFICIAL</div>
+      <p class="s-desc">Sistema de puntos por torneo y partidos. Actualizaciones en tiempo real. Compará tu nivel con el resto de la comunidad.</p>
+    </div>
+    <div class="service-card">
+      <div class="s-num">02</div>
+      <div class="s-title">TORNEOS ORGANIZADOS</div>
+      <p class="s-desc">Inscribite online, seguí el fixture y cargá resultados desde el celular. Organizamos o te ayudamos a crear los tuyos.</p>
+    </div>
+    <div class="service-card">
+      <div class="s-num">03</div>
+      <div class="s-title">RESERVA DE CANCHAS</div>
+      <p class="s-desc">Directorio de clubes y canchas públicas en toda el AMBA. Horarios, precios y contacto directo.</p>
+    </div>
+    <div class="service-card">
+      <div class="s-num">04</div>
+      <div class="s-title">COMUNIDAD</div>
+      <p class="s-desc">Buscá compañero de juego, encontrá sparring de tu nivel y conectá con otros amantes del tenis amateur.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RANKING PREVIEW -->
+<section class="ranking-section">
+  <p class="section-label" style="color:var(--clay-light)">Top jugadores</p>
+  <h2 class="section-title">RANKING<br>GENERAL AMBA</h2>
+  <table class="ranking-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Jugador</th>
+        <th>Puntos</th>
+        <th>Categoría</th>
+        <th>Zona</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="pos-num top">1</span></td>
+        <td><div class="player-name">Matías Rodríguez</div><div class="player-club">Club Náutico San Isidro</div></td>
+        <td><span class="pts">2.840</span></td>
+        <td><span class="badge badge-a">A</span></td>
+        <td style="color:var(--muted);font-size:0.82rem">Norte GBA</td>
+      </tr>
+      <tr>
+        <td><span class="pos-num top">2</span></td>
+        <td><div class="player-name">Luciana Ferreyra</div><div class="player-club">CASI</div></td>
+        <td><span class="pts">2.720</span></td>
+        <td><span class="badge badge-a">A</span></td>
+        <td style="color:var(--muted);font-size:0.82rem">CABA</td>
+      </tr>
+      <tr>
+        <td><span class="pos-num top">3</span></td>
+        <td><div class="player-name">Diego Almeida</div><div class="player-club">Club Argentino</div></td>
+        <td><span class="pts">2.610</span></td>
+        <td><span class="badge badge-a">A</span></td>
+        <td style="color:var(--muted);font-size:0.82rem">CABA</td>
+      </tr>
+      <tr>
+        <td><span class="pos-num">4</span></td>
+        <td><div class="player-name">Valentina Sosa</div><div class="player-club">Lomas AC</div></td>
+        <td><span class="pts">2.480</span></td>
+        <td><span class="badge badge-b">B</span></td>
+        <td style="color:var(--muted);font-size:0.82rem">Sur GBA</td>
+      </tr>
+      <tr>
+        <td><span class="pos-num">5</span></td>
+        <td><div class="player-name">Pablo Suárez</div><div class="player-club">Club Oeste</div></td>
+        <td><span class="pts">2.340</span></td>
+        <td><span class="badge badge-b">B</span></td>
+        <td style="color:var(--muted);font-size:0.82rem">Oeste GBA</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TORNEOS -->
+<section class="torneos-section">
+  <p class="section-label">Próximos torneos</p>
+  <h2 class="section-title">INSCRIBITE<br>AHORA</h2>
+  <div class="torneos-grid">
+    <div class="torneo-card">
+      <div class="torneo-header">
+        <div class="torneo-fecha">14 jun · CABA</div>
+        <div class="torneo-nombre">Copa Primavera<br>Open A</div>
+      </div>
+      <div class="torneo-body">
+        <div class="torneo-info">
+          <span>👥 32 jugadores máx.</span>
+          <span>📍 Club Belgrano AC</span>
+          <span>💰 $4.500 inscripción</span>
+        </div>
+        <button class="torneo-btn">Inscribirme</button>
+      </div>
+    </div>
+    <div class="torneo-card">
+      <div class="torneo-header">
+        <div class="torneo-fecha">21 jun · San Isidro</div>
+        <div class="torneo-nombre">Torneo Norte<br>Cat. B/C</div>
+      </div>
+      <div class="torneo-body">
+        <div class="torneo-info">
+          <span>👥 24 jugadores máx.</span>
+          <span>📍 Club San Isidro</span>
+          <span>💰 $3.500 inscripción</span>
+        </div>
+        <button class="torneo-btn">Inscribirme</button>
+      </div>
+    </div>
+    <div class="torneo-card">
+      <div class="torneo-header">
+        <div class="torneo-fecha">28 jun · Palermo</div>
+        <div class="torneo-nombre">TenisAR<br>Grand Prix</div>
+      </div>
+      <div class="torneo-body">
+        <div class="torneo-info">
+          <span>👥 64 jugadores máx.</span>
+          <span>📍 Canchas Palermo</span>
+          <span>💰 $6.000 inscripción</span>
+        </div>
+        <button class="torneo-btn">Inscribirme</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2 class="section-title">SUMATE A LA<br>COMUNIDAD</h2>
+  <p class="cta-sub">Registrate gratis, conseguí tu ranking y empezá a jugar torneos en todo el AMBA.</p>
+  <button class="btn-white">Crear mi perfil gratis</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Tenis<span>AR</span> · Buenos Aires</div>
+  <div class="footer-copy">© 2025 · Plataforma de tenis amateur Argentina</div>
+</footer>
+
+</body>
+</html>
